@@ -1,0 +1,94 @@
+name: Core
+main: tk.retromc.Core.Core
+version: 1.0.0
+api-version: 1.15
+
+commands:
+  fly:
+    description: toggle flying on/off for a player
+    aliases: [f]
+  seen:
+    description: see when a player was last on
+    aliases: [s]
+  enderchest:
+    description: open an enderchest
+    aliases: [ec]
+  ip:
+    description: see your ip
+  home:
+    description: travel home
+    aliases: [h]
+  homes:
+    description: list homes
+    aliases: [hs]
+  delhome:
+    description: delete home
+    aliases: [dh]
+  addfriend:
+    description: add friend to home
+    aliases: [af]
+  removefriend:
+    description: remove friend from home
+    aliases: [rf]
+  homeholo:
+    description: control home hologram
+    aliases: [hh]
+  warp:
+    description: warp somewhere
+    aliases: [w, warps, spawn]
+  setwarp:
+    description: set a warp
+    aliases: [sw]
+  delwarp:
+    description: delete a warp
+    aliases: [dw]
+  tpa:
+    description: request teleport
+  tpahere:
+    description: request teleport here
+  tpaccept:
+    description: accept tpa
+
+permissions:
+  core.seen:
+    description: access to /seen
+    default: true
+  core.seen.other:
+    description: access to /seen (other players)
+    default: true
+  core.seen.other.enhanced:
+    description: access to enhanced /seen (other players)
+    default: op
+  core.ip:
+    description: access to /ip
+    default: true
+  core.ip.other:
+    description: view another's ip
+    default: op
+  core.fly:
+    description: access to /fly
+    default: op
+  core.fly.other:
+    description: toggle other player's /fly
+    default: op
+  core.enderchest:
+    descripton: access to /ec
+    default: op
+  core.enderchest.other:
+    description: open another's enderchest
+    default: op
+  core.home:
+    description: set home and travel home and add/remove friends
+    default: true
+  core.warp:
+    description: warp places
+    default: true
+  core.setwarp:
+    description: set warps
+    default: op
+  core.delwarp:
+    description: delete warps
+    default: op
+  core.tpa:
+    description: tpa
+    default: true

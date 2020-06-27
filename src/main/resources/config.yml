@@ -1,0 +1,10 @@
+# very flexible, for a comprehensible list look at
+# https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html
+dateFormat: "yyyy-MM-dd HH:mm:ss.SS z"
+timeFormat: "HH:mm:ss.SS"
+
+# probably don't change this unless you are a fascist
+timeZone: "UTC"
+
+# withhin the plugin folder
+userDataPath: "users/"

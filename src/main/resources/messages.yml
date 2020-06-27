@@ -1,0 +1,85 @@
+# variables ($variable) are generally only usable inside the section they are
+# found in by default
+
+fly:
+  enable: "&eFlying enabled"
+  disable: "&eFlying disabled"
+
+  enableOther: "&eFlying enabled for $player"
+  disableOther: "&eFlying disabled for $player"
+
+  usageMessage: "&rUsage:\n/fly [players]"
+
+# all online/offline messages share the SAME variables
+seen:
+  online: "&e$player is &aonline\n&eJoined: &a$date"
+  offline: "&e$player is &coffline\n&eLast seen: &c$date"
+
+  opOnline: "&e$player is &aonline\n&eJoined: &a$date\n&eIP: &a$ip"
+  opOffline: "&e$player is &coffline\n&eLast seen: &c$date\n&eIP: &c$ip\n&eLast location: &c$x, $y, $z"
+
+  usageMessage: "&r/seen [player]"
+
+home:
+  namePrompt: "&eEnter the name of your new home, or !cancel to cancel."
+  confirmation: "&eNew home \"$homename\" has been set.\n&eEdit the hologram with &a/homeholo\n&eAdd friends with &a/addfriend $homename <friend>\n&eReturn here anytime with &a/home $homename"
+
+  noHomes: "&eNo homes found."
+  notFound: "&cHome \"$homename\" not found."
+  unspecified: "&cNo home specified"
+
+  deleted: "&eHome \"$homename\" deleted."
+
+homes:
+  format: "&eFound $quantity home(s):\n&e$homes"
+  usageMessage: "&r/homes [player"
+
+homefriend:
+  addedFriend: "&e$friend has been added to \"$homename\", and may now teleport there."
+  removedFriend: "&e$friend has been removed from \"$homename\", and may no longer teleport there."
+
+  addedYou: "&e$friend has added you to their home \"$homename\", you can teleport there using &a/home $friend $homename"
+  removedYou: "&e$friend has removed you from their home \"$homename\"."
+
+  usageMessage: "/<add/remove>friend <player>"
+
+homeholo:
+  usageMessage: "&r/homeholo <home> <disable|enable|write> <write: message>"
+  disabled: "&eHologram disabled"
+  enabled: "&eHologram enabled"
+  updated: "&eHologram updated"
+
+warp:
+  newWarp: "&eWarp \"$warpname\" set."
+  warpList: "&eAvailable warps:\n&a$warplist"
+  noWarps: "&eThere are currently no available warps."
+  invalid: "&cInvalid warp."
+
+setwarp:
+  confirm: "&eWarp \"$warpname\" has been set."
+  dupe: "&cWarp \"$warpname\" already exists."
+  noargs: "&cYou must specify a name."
+
+delwarp:
+  confirm: "&eWarp \"$warpname\" deleted."
+  invalid: "&cInvalid warp."
+
+tpa:
+  recieve: "&e$dispatcher is requesting to teleport to you.\n&eUse &a/tpaccept &eto accept, this request expires in 60 seconds"
+  send: "&eRequesting to teleport to $target"
+
+  usageMessage: "&r/tpa <player>"
+
+# shares a usage message with tpa
+tpahere:
+  recieve: "&e$dispatcher is requesting you teleport to them.\n&eUse &a/tpaccept &eto accept, this request exxpires in 60 seconds"
+  send: "&eRequesting to teleport to $target"
+
+  usageMessage: "&r/tpahere <player>"
+
+tpaccept:
+  noRequests: "&eYou do not have any current requests."
+
+invalidSender: "&cOnly players are allowed to use this command"
+playerNotFound: "&cPlayer not found"
+permissionDenied: "&cI'm sorry, but you do not have permission to perform this command. Please contact the server administrators if you believe this is a mistake."
