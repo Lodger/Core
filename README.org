@@ -1,0 +1,85 @@
+A collection of useful Bukkit commands, as well as a platform for building or
+adding your own.
+
+* Creating new commands
+  The entry point for every command is a method with an annotation that
+  specifies it as the implementation of the command. For example, if you wanted
+  to create a command called "ping" that just prints the word "pong" in chat, the
+  implementation would be as follows:
+
+  #+BEGIN_SRC java
+  @BukkitCommand(labels = {"ping"})
+  public static boolean ping(CommandSender sender, Command cmd, String label, String args[]) {
+          sender.sendMessage("pong");
+          return true;
+  }
+  #+END_SRC
+
+  You can also specify permissions that need to exist in order for a command to
+  operate, Rube will *not* check to make sure that the caller has these
+  permissions before invoking the implementing method, so if your command
+  requires a certain permission node, make sure you check for it. You may
+  specify the [[https://hub.spigotmc.org/javadocs/spigot/org/bukkit/permissions/PermissionDefault.html][default permission level]] by appending a pipe and the enum value
+  after the permission node.
+
+  #+BEGIN_SRC java
+  @BukkitCommand(labels = {"ping"})
+  @Permissions({"rube.ping | TRUE"})
+  public static boolean ping(CommandSender sender, Command cmd, String label, String args[]) {
+          sender.sendMessage("pong");
+          return true;
+  }
+  #+END_SRC
+
+  If your command takes arguments, you can specify the method that should be
+  used to tab-complete it using the ~@TabCompleter~ annotation, for example:
+
+  #+BEGIN_SRC java
+  @BukkitCommand(labels = {"ping"})
+  @TabCompleter("some.class.path#theMethod")
+  public static boolean ping(CommandSender sender, Command cmd, String label, String args[]) {
+          sender.sendMessage("pong");
+          return true;
+  }
+  #+END_SRC
+
+  All tab-completing methods need *must* be public, and accept the proper
+  parameters, as specified by the command's wrapper.
+
+** Wrappers
+   In order to execute a command, we must "wrap" the method with an external
+   class, which will be set as the executor, this is what we'll call a
+   "wrapper". You may specify a built-in wrapper with the ~@Wrapper~ annotation,
+   along with the ~WrapperType~ enum, or by providing the full class path your
+   own custom wrapper.
+
+   The simplest wrapper type is ~CommandWrapper~. All it does is execute a
+   method when the corresponding command is invoked, and invoke the
+   tab-completing method when appropriate. This type of wrapper is implicitly
+   applied to all commands that do not specify a wrapper.
+
+   The wrapper is called before the implementing method, and they can do
+   whatever they want before invoking it. For example, the ~Applicator~ wrapper
+   first parses a list of player names before passing it on to the implementing
+   method in the form of ~List<OfflinePlayer>~. The wrapper type also determines
+   the parameters for for implementing method, for ~CommandWrapper~, a method
+   must accept the paremeters ~CommandSender, Command, String, String[]~ in
+   order to be successfully invoked. This is also the case for tab-completing
+   methods.
+
+   Currently, there are two wrapper types that come with Rube by default,
+   ~CommandWrapper~, and ~Applicator~. You may specify one of these (although
+   ~CommandWrapper~ is the default wrapper and there is no need to explicitly
+   ask for it) by using the ~tk.retromc.rube.commands.WrapperType~ enum.
+
+*** Custom wrappers
+    Any custom wrapper must extend ~CommandWrapper~. You can specify a custom
+    wrapper in the ~@Wrapper~ annotation like so:
+
+    #+BEGIN_SRC java
+    @Wrapper(custom = "some.class.path.CustomWrapper")
+    #+END_SRC
+
+** Adding your command
+   Add your class to the file ~load.yml~. All classes and, if applicable,
+   commands, in ~load.yml~ will be loaded when the plugin is enabled.
